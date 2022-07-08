@@ -1,13 +1,16 @@
 package com.example.indexstorage.controller;
 
+import com.example.indexstorage.IndexRecordDto.IndexRecordDto;
 import com.example.indexstorage.model.IndexRecord;
 import com.example.indexstorage.service.IndexRecordService;
+import com.example.indexstorage.util.IndexRecordMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 @RestController
@@ -16,6 +19,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class IndexRecordController {
     private IndexRecordService indexRecordService;
+    private IndexRecordMapper indexRecordMapper;
 
     @GetMapping("{stock}")
     public ResponseEntity<ArrayList<IndexRecord>> getIndexRecordByType(@PathVariable String stock) {
@@ -26,9 +30,11 @@ public class IndexRecordController {
     }
 
     @PostMapping()
-    public ResponseEntity createNewRecord(@RequestBody IndexRecord newIndexRecord) {
+    public ResponseEntity createNewRecord(@RequestBody IndexRecordDto indexRecordDto) throws ParseException {
         log.info("Received a request to create a record");
-        indexRecordService.saveIndexRecord(newIndexRecord);
+
+        IndexRecord indexRecord = indexRecordMapper.map(indexRecordDto);
+        indexRecordService.saveIndexRecord(indexRecord);
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }

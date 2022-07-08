@@ -1,39 +1,34 @@
-package com.example.indexstorage.model;
-
+package com.example.indexstorage.IndexRecordDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.Date;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class IndexRecord {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Integer quarter;
+public class IndexRecordDto {
+    private Integer quarter; // 1 or 2
     private String stock;
 
-    private Date date;
-    private Double open;
-    private Double high;
-    private Double low;
-    private Double close;
+    private String date;    // e.g. 1/7/2011
+
+    private String open;    // e.g. $12.32
+    private String high;    // e.g. $12.32
+    private String low;     // e.g. $12.32
+    private String close;   // e.g. $12.32
     private Integer volume;
 
     private Double percentChangePrice;
     private Double percentChangeVolumeOverLastWeek;
     private Integer previousWeeksVolume;
 
-    private Double nextWeeksOpen;
-    private Double nextWeeksClose;
+    private String nextWeeksOpen;   // e.g. $12.32
+    private String nextWeeksClose;  // e.g. $12.32
     private Double percentChangeNextWeeksPrice;
 
     private Integer daysToNextDividend;
     private Double percentReturnNextDividend;
 }
+
+
