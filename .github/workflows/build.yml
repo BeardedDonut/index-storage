@@ -1,0 +1,42 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "rel" ]
+
+env:
+  JAVA_VERSION: 1.17
+  POSTGRES_VERSION: 13.1
+  POSTGRES_DB: amigoscode
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: password
+
+jobs:
+  build:
+    name: build-artifact
+    runs-on: ubuntu-latest
+    services:
+      database:
+        image: postgres:13.1
+        env:
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK
+      uses: actions/setup-java@v1.4.3
+      with:
+        java-version: ${{env.JAVA_VERSION}}
+        cache: maven
+    - name: Run Tests
+      run: mvn -f pom.xml clean package -P test
