@@ -1,6 +1,7 @@
 package com.example.indexstorage.controller;
 
-import com.example.indexstorage.IndexRecordDto.IndexRecordDto;
+import com.example.indexstorage.dto.IndexRecordDto;
+import com.example.indexstorage.exception.BadRequestException;
 import com.example.indexstorage.model.IndexRecord;
 import com.example.indexstorage.service.IndexRecordService;
 import com.example.indexstorage.util.IndexRecordUtil;
@@ -52,7 +53,7 @@ public class IndexRecordController {
             throw new IllegalStateException("Bad request");
         }
 
-        for (IndexRecordDto indexRecord:recordsDto) {
+        for (IndexRecordDto indexRecord : recordsDto) {
             indexRecordService.saveIndexRecord(indexRecordUtil.map(indexRecord));
         }
 
