@@ -1,0 +1,29 @@
+version: '2'
+services:
+  database:
+    container_name: database-server
+    image: postgres:13.1
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_DB: indexDB
+      POSTGRES_PASSWORD: navid1234
+    networks:
+      - cloud
+
+  index-storage-service:
+    container_name: index-storage-server
+    environment:
+      POSTGRES_URL: database
+      POSTGRES_PORT: 3306
+      POSTGRES_DB: indexDB
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: index-storage
+    ports:
+      - 8080:8080
+    networks:
+      - cloud
+networks:
+  cloud:
+    driver: overlay
