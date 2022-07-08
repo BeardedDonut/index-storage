@@ -1,9 +1,9 @@
 package com.example.indexstorage.repo;
 
 import com.example.indexstorage.model.IndexRecord;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.assertj.core.api.Assertions;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.text.ParseException;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @DataJpaTest
 class IndexRecordRepoTest {
-    
+
     @Autowired
     IndexRecordRepo indexRecordRepo;
 
@@ -21,20 +21,20 @@ class IndexRecordRepoTest {
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 
         IndexRecord indexRecord = new IndexRecord(null
-                ,1
-                ,"AA"
-                ,formatter.parse("1/7/2011")
-                ,15.82
-                ,16.72
-                ,15.78
-                ,16.42
-                ,239655616
-                ,3.79267
-                ,null
-                ,null
-                ,16.71
-                ,15.97
-                ,-4.42849,
+                , 1
+                , "AA"
+                , formatter.parse("1/7/2011")
+                , 15.82
+                , 16.72
+                , 15.78
+                , 16.42
+                , 239655616
+                , 3.79267
+                , null
+                , null
+                , 16.71
+                , 15.97
+                , -4.42849,
                 26,
                 0.182704);
 
@@ -44,8 +44,8 @@ class IndexRecordRepoTest {
 
     @Test
     void shouldReturnEmptyListWhenNoRecord() {
-       List<IndexRecord> indexRecords =  indexRecordRepo.findAllByStock("AA");
-       Assertions.assertThat(indexRecords.size()).isEqualTo(0);
+        List<IndexRecord> indexRecords = indexRecordRepo.findAllByStock("AA");
+        Assertions.assertThat(indexRecords.size()).isEqualTo(0);
     }
 
     @Test
@@ -53,57 +53,57 @@ class IndexRecordRepoTest {
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 
         IndexRecord indexRecord = new IndexRecord(null
-                ,1
-                ,"AA"
+                , 1
+                , "AA"
                 , formatter.parse("1/7/2011")
-                ,15.82
-                ,16.72
-                ,15.78
-                ,16.42
-                ,239655616
-                ,3.79267
-                ,null
-                ,null
-                ,16.71
-                ,15.97
-                ,-4.42849,
+                , 15.82
+                , 16.72
+                , 15.78
+                , 16.42
+                , 239655616
+                , 3.79267
+                , null
+                , null
+                , 16.71
+                , 15.97
+                , -4.42849,
                 26,
                 0.182704);
 
         IndexRecord indexRecord2 = new IndexRecord(null
-                ,1
-                ,"AA"
-                ,formatter.parse("1/7/2011")
-                ,15.82
-                ,16.72
-                ,15.78
-                ,16.42
-                ,239655616
-                ,3.79267
-                ,null
-                ,null
-                ,16.71
-                ,15.97
-                ,-4.42849,
+                , 1
+                , "AA"
+                , formatter.parse("1/7/2011")
+                , 15.82
+                , 16.72
+                , 15.78
+                , 16.42
+                , 239655616
+                , 3.79267
+                , null
+                , null
+                , 16.71
+                , 15.97
+                , -4.42849,
                 26,
                 0.182704);
 
 
         IndexRecord indexRecord3 = new IndexRecord(null
-                ,1
-                ,"AXP"
-                ,formatter.parse("1/7/2011")
-                ,15.82
-                ,16.72
-                ,15.78
-                ,16.42
-                ,239655616
-                ,3.79267
-                ,null
-                ,null
-                ,16.71
-                ,15.97
-                ,-4.42849,
+                , 1
+                , "AXP"
+                , formatter.parse("1/7/2011")
+                , 15.82
+                , 16.72
+                , 15.78
+                , 16.42
+                , 239655616
+                , 3.79267
+                , null
+                , null
+                , 16.71
+                , 15.97
+                , -4.42849,
                 26,
                 0.182704);
 

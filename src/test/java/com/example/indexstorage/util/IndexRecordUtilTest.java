@@ -2,18 +2,14 @@ package com.example.indexstorage.util;
 
 import com.example.indexstorage.IndexRecordDto.IndexRecordDto;
 import com.example.indexstorage.model.IndexRecord;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class IndexRecordUtilTest {
     IndexRecordUtil indexRecordUtil;
