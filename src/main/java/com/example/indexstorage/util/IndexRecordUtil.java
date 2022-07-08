@@ -2,20 +2,23 @@ package com.example.indexstorage.util;
 
 import com.example.indexstorage.IndexRecordDto.IndexRecordDto;
 import com.example.indexstorage.model.IndexRecord;
+import com.opencsv.bean.CsvToBeanBuilder;
 import org.springframework.stereotype.Component;
 
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 
 @Component
-public class IndexRecordMapper {
+public class IndexRecordUtil {
     private Double convertDollarAmountStringToDouble (String amount) {
         return Double.parseDouble(amount.replace("$", ""));
     }
 
     public IndexRecord map(IndexRecordDto indexRecordDto) throws ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         IndexRecord indexRecord = new IndexRecord();
         indexRecord.setQuarter(indexRecordDto.getQuarter());
         indexRecord.setStock(indexRecordDto.getStock());
@@ -40,5 +43,21 @@ public class IndexRecordMapper {
         indexRecord.setPercentReturnNextDividend(indexRecordDto.getPercentReturnNextDividend());
 
         return indexRecord;
+    }
+
+    public List<IndexRecordDto> csvByteStreamToListOfRecordDto(byte[] byteStream) throws InterruptedException {
+        InputStream dataInputStream = new ByteArrayInputStream(byteStream);
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(dataInputStream))) {
+            String line = reader.readLine();
+
+            return new CsvToBeanBuilder<IndexRecordDto>(reader)
+                    .withType(IndexRecordDto.class)
+                    .build()
+                    .parse();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

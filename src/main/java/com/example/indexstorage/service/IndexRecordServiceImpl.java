@@ -18,7 +18,6 @@ public class IndexRecordServiceImpl implements IndexRecordService {
     @Autowired
     private IndexRecordRepo indexRecordRepo;
 
-
     @Override
     @Transactional
     public void saveIndexRecord(IndexRecord indexRecord) {
