@@ -1,4 +1,4 @@
-package com.example.indexstorage.IndexRecordDto;
+package com.example.indexstorage.dto;
 
 import com.opencsv.bean.CsvBindByPosition;
 import lombok.AllArgsConstructor;

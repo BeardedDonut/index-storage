@@ -1,5 +1,7 @@
 package com.example.indexstorage.service;
 
+import com.example.indexstorage.exception.BadRequestException;
+import com.example.indexstorage.exception.NoRecordsException;
 import com.example.indexstorage.model.IndexRecord;
 import com.example.indexstorage.repo.IndexRecordRepo;
 import lombok.AllArgsConstructor;
@@ -24,7 +26,7 @@ public class IndexRecordServiceImpl implements IndexRecordService {
         // some basic validations
         // check if record.quarter is either 1 or 2
         if (indexRecord.getQuarter() != 1 && indexRecord.getQuarter() != 2) {
-            throw new IllegalStateException("invalid quarters");
+            throw new BadRequestException("invalid quarters");
         }
 
         indexRecordRepo.save(indexRecord);
@@ -34,7 +36,7 @@ public class IndexRecordServiceImpl implements IndexRecordService {
     public ArrayList<IndexRecord> getIndexRecordByStock(String stock) {
         List<IndexRecord> indexRecords = indexRecordRepo.findAllByStock(stock);
         if (indexRecords.size() == 0) {
-            throw new IllegalStateException("No Index Record is found");
+            throw new NoRecordsException("No Index Record is found");
         }
 
         return new ArrayList<IndexRecord>(indexRecords);
