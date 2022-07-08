@@ -50,7 +50,7 @@ public class IndexRecordController {
         List<IndexRecordDto> recordsDto = indexRecordUtil.csvByteStreamToListOfRecordDto(
                 IOUtils.toByteArray(file.getInputStream()));
         if (recordsDto.size() == 0)  {
-            throw new IllegalStateException("Bad request");
+            throw new BadRequestException("No records to upload!");
         }
 
         for (IndexRecordDto indexRecord : recordsDto) {
