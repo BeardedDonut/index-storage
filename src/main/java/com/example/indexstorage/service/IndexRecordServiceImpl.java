@@ -34,7 +34,7 @@ public class IndexRecordServiceImpl implements IndexRecordService {
 
     @Override
     public ArrayList<IndexRecord> getIndexRecordByStock(String stock) {
-        List<IndexRecord> indexRecords = indexRecordRepo.findAllByStock("stock");
+        List<IndexRecord> indexRecords = indexRecordRepo.findAllByStock(stock);
         if (indexRecords.size() == 0) {
             throw new IllegalStateException("No Index Record is found");
         }

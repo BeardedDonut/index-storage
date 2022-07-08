@@ -68,8 +68,13 @@ class IndexRecordServiceImplTest {
     void canGetIndexRecordsByStock() {
         when(indexRecordRepo.findAllByStock(any(String.class))).thenReturn(new ArrayList<>(List.of(indexRecord)));
 
-        ArrayList<IndexRecord> indexRecords = new ArrayList<>(indexRecordRepo.findAllByStock("AA"));
+        ArrayList<IndexRecord> indexRecords = new ArrayList<>(indexRecordService.getIndexRecordByStock("AA"));
         assertThat(indexRecords.size()).isEqualTo(1);
+        verify(indexRecordRepo).findAllByStock(argThat(arg -> {
+            assertThat(arg).isNotNull();
+            assertThat(arg).isEqualTo("AA");
+            return true;
+        }));
     }
 
     @Test
