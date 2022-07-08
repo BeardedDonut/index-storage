@@ -18,7 +18,7 @@ class IndexRecordRepoTest {
 
     @Test
     void shouldSaveToDB() throws ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 
         IndexRecord indexRecord = new IndexRecord(null
                 ,1
@@ -50,7 +50,7 @@ class IndexRecordRepoTest {
 
     @Test
     void shouldRetrieveByStock() throws ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 
         IndexRecord indexRecord = new IndexRecord(null
                 ,1

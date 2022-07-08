@@ -31,7 +31,7 @@ class IndexRecordServiceImplTest {
     @BeforeEach
     void setup() throws ParseException {
         indexRecordService = new IndexRecordServiceImpl(indexRecordRepo);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 
         indexRecord = new IndexRecord(null
                 ,1
