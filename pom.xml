@@ -32,8 +32,8 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -89,16 +89,15 @@
         </plugins>
     </build>
     <profiles>
-
         <profile>
-            <id>prod</id>
+            <id>dev</id>
             <properties>
-                <activatedProperties>prod</activatedProperties>
-                <db.url>jdbc:mysql://${MYSQL_URL}:${MYSQL_PORT}/${MYSQL_DB}</db.url>
+                <activatedProperties>dev</activatedProperties>
+                <db.url>jdbc:postgresql://database:5432/indexDB</db.url>
                 <db.pass>navid1234</db.pass>
                 <db.user>root</db.user>
-                <db.dialect>org.hibernate.dialect.MySQL8Dialect</db.dialect>
-                <db.driver>com.mysql.jdbc.Driver</db.driver>
+                <db.dialect>org.hibernate.dialect.PostgreSQLDialect</db.dialect>
+                <db.driver>org.postgresql.Driver</db.driver>
             </properties>
         </profile>
 
