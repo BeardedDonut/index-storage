@@ -1,5 +1,6 @@
 package com.example.indexstorage.service;
 
+import com.example.indexstorage.exception.NoRecordsException;
 import com.example.indexstorage.model.IndexRecord;
 import com.example.indexstorage.repo.IndexRecordRepo;
 import org.junit.jupiter.api.Assertions;
@@ -81,7 +82,7 @@ class IndexRecordServiceImplTest {
     void shouldThrowExceptionWhenNoRecord() {
         when(indexRecordRepo.findAllByStock(any(String.class))).thenReturn(new ArrayList<>());
         Executable executable = () -> indexRecordService.getIndexRecordByStock("AA");
-        Exception exception = Assertions.assertThrows(IllegalStateException.class, executable);
+        Exception exception = Assertions.assertThrows(NoRecordsException.class, executable);
 
         assertThat(exception.getMessage()).isEqualTo("No Index Record is found");
     }
