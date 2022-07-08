@@ -115,8 +115,29 @@ once the build finished you can go to
 
 
 # What's next?
-- async upload
-- add custom exceptions
+Here are a list of things that I believe can improve the performance and maintainability of this application:
+
+- **Performance Improvements**:
+    - Async dataset upload: 
+        currently, whenever a data set file is uploaded to the
+        server, user should wait for the server to process the file and load the data records into the database. 
+    
+        Instead of this, we can leverage `@EnableAsync` and `@Async` to create an upload Task object that contains and Id and Status `({Processing, Finished, Error})` then pass the file to an external method with `@Async` annotations and return the task to the user. 
+
+        In the background the process processes the file and then updates the status of the task.
+
+        We also need to persist the task objects into the database and also provide a REST controller for users so that they can find out about status of the task by providing the task id.
+
+    - Transient Attributes [Maybe?]: 
+        I was wondering if any of the attirbutes of the model such as `percent_change_next_weeks_price` can be calculated from other attributes? In that case we can mark them as `@Transient` and reduce the loading and saving time. However, I am not an expert and this change requires some domain knowledge.
+
+- **Maintenance**:
+    - Add more tests:
+        - Currently I have only unit test for 3 components and 8 unit tests in total so adding more tests can be quite good.
+    - add more custom exceptions and exception handlers
+
+**More**:
 - push to dockerhub from github actions
-- maybe transient state? required domain knowledge
+
+
 
