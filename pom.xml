@@ -88,5 +88,30 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
 
+        <profile>
+            <id>prod</id>
+            <properties>
+                <activatedProperties>prod</activatedProperties>
+                <db.url>jdbc:mysql://${MYSQL_URL}:${MYSQL_PORT}/${MYSQL_DB}</db.url>
+                <db.pass>navid1234</db.pass>
+                <db.user>root</db.user>
+                <db.dialect>org.hibernate.dialect.MySQL8Dialect</db.dialect>
+                <db.driver>com.mysql.jdbc.Driver</db.driver>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>test</id>
+            <properties>
+                <activatedProperties>test</activatedProperties>
+                <db.url>jdbc:h2://mem:db;DB_CLOSE_DELAY=-1</db.url>
+                <db.pass>sa</db.pass>
+                <db.user>sa</db.user>
+                <db.dialect>org.hibernate.dialect.PostgreSQLDialect</db.dialect>
+                <db.driver>org.h2.Driver</db.driver>
+            </properties>
+        </profile>
+    </profiles>
 </project>

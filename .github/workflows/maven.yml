@@ -1,0 +1,28 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  JAVA_VERSION: 1.17
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK
+      uses: actions/setup-java@v1.4.3
+      with:
+        java-version: ${{env.JAVA_VERSION}}
+        cache: maven
+    - name: Run Tests
+      run: mvn -f pom.xml clean test -P test 
