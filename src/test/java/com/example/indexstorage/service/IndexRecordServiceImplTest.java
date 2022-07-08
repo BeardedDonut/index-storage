@@ -35,7 +35,7 @@ class IndexRecordServiceImplTest {
 
         indexRecord = new IndexRecord(null
                 , 1
-                , "AA"
+                , "AXA"
                 , formatter.parse("1/7/2011")
                 , 15.82
                 , 16.72
