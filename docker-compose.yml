@@ -14,7 +14,7 @@ services:
     container_name: index-storage-server
     environment:
       POSTGRES_URL: database
-      POSTGRES_PORT: 3306
+      POSTGRES_PORT: 5432
       POSTGRES_DB: indexDB
     build:
       context: .

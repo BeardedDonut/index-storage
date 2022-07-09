@@ -114,7 +114,7 @@ once the build finished you can go to
 - [Note]: if you're on a remote server, replace the `localhost` with the server url or ip and make sure that port 8080 is expored.
 
 
-# What's next?
+# What's next? and how to improve?
 Here are a list of things that I believe can improve the performance and maintainability of this application:
 
 - **Performance Improvements**:
@@ -134,7 +134,6 @@ Here are a list of things that I believe can improve the performance and maintai
 - **Maintenance**:
     - Add more tests:
         - Currently I have only unit test for 3 components and 8 unit tests in total so adding more tests can be quite good.
-    - add more custom exceptions and exception handlers
 
 **More**:
 - push to dockerhub from github actions
