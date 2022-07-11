@@ -45,6 +45,16 @@ Apart from above-mentioned components there are 3 others that should be noted:
 ## APIs
 Note: REST APIs are available on `/swagger-ui.html` when you deploy the application.
 
+Note: you can also see the published API's [here](https://documenter.getpostman.com/view/3505676/UzJPLEf9). 
+
+| Url                             | HTTP Method | Content Type    | Response                                                                                     |
+|---------------------------------|-------------|-----------------|----------------------------------------------------------------------------------------------|
+| `/api/index-record`            |     POST    |       json      | 200 OK (valid request)                                                                       |
+| `/api/index-record/bulk-upload` |     POST    | multi-part-file | 200 OK (valid)<br>400 BAD REQUEST (no record to upload)                                      |
+| `/api/index-record/{stock}`     |     GET     |        -        | 200 OK (valid request)<br>404 NOT FOUND (no record found)<br>400 BAD REQUEST (invalid stock) |
+| `/api/heartbeat`                |     GET     |        -        | 200 OK                                                                                       |
+| `/swagger-ui.html`              |     GET     |        -        | 200 OK                                                                                       |
+
 ## How to test?
 There are already a run-test github voter which runs the test whenever there is a new pull request on `main` branch. 
 ![run-test-voter](docs/images/run-test-voter.png)
