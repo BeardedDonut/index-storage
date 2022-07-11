@@ -1,6 +1,6 @@
 package com.example.indexstorage.util;
 
-import com.example.indexstorage.IndexRecordDto.IndexRecordDto;
+import com.example.indexstorage.dto.IndexRecordDto;
 import com.example.indexstorage.model.IndexRecord;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.springframework.stereotype.Component;

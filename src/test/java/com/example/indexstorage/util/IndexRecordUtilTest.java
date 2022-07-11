@@ -1,8 +1,9 @@
 package com.example.indexstorage.util;
 
-import com.example.indexstorage.IndexRecordDto.IndexRecordDto;
+import com.example.indexstorage.dto.IndexRecordDto;
 import com.example.indexstorage.model.IndexRecord;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
@@ -27,19 +28,19 @@ class IndexRecordUtilTest {
         IndexRecordDto dto = new IndexRecordDto(1
                 ,"AA"
                 ,dateString
-                ,"15.82"
-                ,"16.72"
-                ,"15.78"
-                ,"16.42"
+                ,"$15.82"
+                ,"$16.72"
+                ,"$15.78"
+                ,"1$6.42"
                 ,239655616
                 ,3.79267
                 ,0.2
                 ,1234
-                ,"16.71"
-                ,"15.97"
-                ,-4.42849,
-                26,
-                0.182704);
+                ,"$16.71"
+                ,"$15.97"
+                ,-4.42849
+                ,26
+                ,0.182704);
 
         IndexRecord mappedRecord = indexRecordUtil.map(dto);
 

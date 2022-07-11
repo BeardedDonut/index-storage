@@ -4,7 +4,7 @@ services:
     container_name: database-server
     image: postgres:13.1
     environment:
-      POSTGRES_USER: root
+      POSTGRES_USER: postgres
       POSTGRES_DB: indexDB
       POSTGRES_PASSWORD: navid1234
     networks:
@@ -14,7 +14,7 @@ services:
     container_name: index-storage-server
     environment:
       POSTGRES_URL: database
-      POSTGRES_PORT: 3306
+      POSTGRES_PORT: 5432
       POSTGRES_DB: indexDB
     build:
       context: .

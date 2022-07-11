@@ -1,6 +1,7 @@
 package com.example.indexstorage.controller;
 
-import com.example.indexstorage.IndexRecordDto.IndexRecordDto;
+import com.example.indexstorage.dto.IndexRecordDto;
+import com.example.indexstorage.exception.BadRequestException;
 import com.example.indexstorage.model.IndexRecord;
 import com.example.indexstorage.service.IndexRecordService;
 import com.example.indexstorage.util.IndexRecordUtil;
@@ -44,15 +45,16 @@ public class IndexRecordController {
     }
 
     @PostMapping("/bulk-upload")
-    public ResponseEntity bulkIUploadDataSet
+    public ResponseEntity bulkUploadDataSet
             (@RequestBody MultipartFile file) throws IOException, InterruptedException, ParseException {
+        log.info("Bulk upload of dataset");
         List<IndexRecordDto> recordsDto = indexRecordUtil.csvByteStreamToListOfRecordDto(
                 IOUtils.toByteArray(file.getInputStream()));
         if (recordsDto.size() == 0)  {
-            throw new IllegalStateException("Bad request");
+            throw new BadRequestException("No records to upload!");
         }
 
-        for (IndexRecordDto indexRecord:recordsDto) {
+        for (IndexRecordDto indexRecord : recordsDto) {
             indexRecordService.saveIndexRecord(indexRecordUtil.map(indexRecord));
         }
 
