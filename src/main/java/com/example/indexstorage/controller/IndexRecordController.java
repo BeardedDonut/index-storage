@@ -45,7 +45,7 @@ public class IndexRecordController {
     }
 
     @PostMapping("/bulk-upload")
-    public ResponseEntity bulkIUploadDataSet
+    public ResponseEntity bulkUploadDataSet
             (@RequestBody MultipartFile file) throws IOException, InterruptedException, ParseException {
         log.info("Bulk upload of dataset");
         List<IndexRecordDto> recordsDto = indexRecordUtil.csvByteStreamToListOfRecordDto(

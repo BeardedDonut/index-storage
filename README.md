@@ -16,7 +16,7 @@ You decided you'd like to build an application server (Spring Boot or NodeJS) th
 
 I decided to use Spring Boot for implementing the solution and wanted to also automate the testing and building process. 
 The application is broken down into a 3 tiers 
-- Controllers: Handle the HTTP requests and call the services accordngly with correct parameters to satisfy the request.
+- Controllers: Handle the HTTP requests and call the services accordingly with correct parameters to satisfy the request.
     - `IndexRecordController` is responsible to handle the HTTP requests coming to the `/api/index-record`. It should be able to handle requests for:
         - bulk file upload to the database
         - getting index record from database based on the Stock (e.g. "AA")
@@ -26,7 +26,7 @@ The application is broken down into a 3 tiers
 - Services: Handle the business logic and functionalities
     - `IndexRecordService` is reponsible to 
         - **SAVE** an index record object
-        - **Retrieve**  index record objects based on a given given Stock (e.g. "AA")
+        - **Retrieve**  index record objects based on a given Stock (e.g. "AA")
 - Repos: Should communicate with database to query and fetch the object from the database
     - `IndexRecordRepo` is responsible for
         - querying the database to fetch index record objects based on a given Stock
@@ -68,7 +68,7 @@ git clone git@github.com:BeardedDonut/index-storage.git
 docker image build -f Dockerfile-test .
 ```
 3. You can see the TEST phase of the maven when the image is building and if there are failure the image build won't finish successfully. 
-4. [Optional] if you still want to run the tests directly, you con run the following command (you should have mvn installed and setup)
+4. [Optional] if you still want to run the tests directly, you can run the following command (you should have mvn installed and setup)
 ```bash
 mvn -f pom.xml test -P test
 ```
@@ -119,9 +119,9 @@ git clone git@github.com:BeardedDonut/index-storage.git
 ```
 docker-compose up --build
 ```
-once the build finished you can go to 
+once the build is finished you can go to 
 - http://localhost:8080/api/index-record/ To use the APIs
-- [Note]: if you're on a remote server, replace the `localhost` with the server url or ip and make sure that port 8080 is expored.
+- [Note]: if you're on a remote server, replace the `localhost` with the server url or ip and make sure that port 8080 is exposed.
 
 
 # What's next? and how to improve?
@@ -132,7 +132,7 @@ Here are a list of things that I believe can improve the performance and maintai
         currently, whenever a data set file is uploaded to the
         server, user should wait for the server to process the file and load the data records into the database. 
     
-        Instead of this, we can leverage `@EnableAsync` and `@Async` to create an upload Task object that contains and Id and Status `({Processing, Finished, Error})` then pass the file to an external method with `@Async` annotations and return the task to the user. 
+        Instead of this, we can leverage `@EnableAsync` and `@Async` to create an upload Task object that contains an Id and Status `({Processing, Finished, Error})` then pass the file to an external method with `@Async` annotations and return the task to the user. 
 
         In the background the process processes the file and then updates the status of the task.
 
@@ -147,6 +147,3 @@ Here are a list of things that I believe can improve the performance and maintai
 
 **More**:
 - push to dockerhub from github actions
-
-
-
